@@ -1,31 +1,99 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# N52 TV durum sayfası (status.n52tv.com). Denetimler GitHub Actions'ta 5 dakikada bir çalışır;
+# sayfa GitHub Pages'te durur, N52 TV sunucusu çökse de açık kalır.
+owner: Dizginfra
+repo: status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Haber sitesi
+    url: https://n52tv.com/
+    expectedStatusCodes:
+      - 200
+  - name: Yönetim paneli
+    url: https://panel.n52tv.com/
+    expectedStatusCodes:
+      - 200
+  - name: Sunucu ve veritabanı
+    # Hazır olma denetimi: API'nin veritabanına ulaştığını da doğrular.
+    url: https://panel.n52tv.com/api/ready
+    expectedStatusCodes:
+      - 200
+  - name: Okur API'si
+    url: https://n52tv.com/api/public/v1/site
+    expectedStatusCodes:
+      - 200
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.n52tv.com
+  logoUrl: https://raw.githubusercontent.com/Dizginfra/status/master/assets/n52tv-simge.png
+  favicon: https://raw.githubusercontent.com/Dizginfra/status/master/assets/n52tv-simge.png
+  name: N52 TV Durum
+  introTitle: "**N52 TV** hizmetlerinin anlık durumu"
+  introMessage: Haber sitesi, yönetim paneli ve altyapı her 5 dakikada bir denetlenir. Bir kesinti olursa burada duyurulur.
+  theme: dark
   navbar:
-    - title: Status
+    - title: Durum
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: N52 TV
+      href: https://n52tv.com/
+  i18n:
+    activeIncidents: Süren olaylar
+    allSystemsOperational: Tüm sistemler çalışıyor
+    incidentReport: "#$NUMBER numaralı olay raporu →"
+    activeIncidentSummary: $DATE tarihinde açıldı, $POSTS güncelleme
+    incidentTitle: $NUMBER numaralı olayın ayrıntıları
+    incidentDetails: Olay ayrıntıları
+    incidentFixed: Giderildi
+    incidentOngoing: Sürüyor
+    incidentOpenedAt: Açılış
+    incidentClosedAt: Kapanış
+    incidentViewOnGitHub: GitHub'da görüntüle ve takip et
+    incidentCommentSummary: $DATE, $AUTHOR
+    incidentBack: ← Tüm olaylara dön
+    pastIncidents: Geçmiş olaylar
+    pastIncidentsResolved: $MINUTES dakikada giderildi, $POSTS güncelleme
+    liveStatus: Anlık durum
+    overallUptime: "Genel erişilebilirlik: $UPTIME"
+    overallUptimeTitle: Genel erişilebilirlik
+    averageResponseTime: "Ortalama yanıt süresi: $TIMEms"
+    averageResponseTimeTitle: Ortalama yanıt
+    sevelDayResponseTime: 7 günlük yanıt süresi
+    responseTimeMs: Yanıt süresi (ms)
+    up: Çalışıyor
+    down: Erişilemiyor
+    degraded: Yavaş
+    ms: ms
+    loading: Yükleniyor
+    navGitHub: GitHub
+    footer: Bu sayfa [açık kaynaktır]($REPO) ve [Upptime](https://upptime.js.org) ile çalışır.
+    rateLimitExceededTitle: İstek sınırı aşıldı
+    rateLimitExceededIntro: Bir saat içinde yapılabilecek istek sayısını aştınız; biraz bekleyin ya da bir GitHub erişim anahtarı ekleyin.
+    rateLimitExceededWhatDoesErrorMean: Bu hata ne anlama geliyor?
+    rateLimitExceededErrorMeaning: Bu sayfa anlık verileri GitHub API'sinden okur. GitHub her IP adresine saatte 60 istek tanır ve bu sınır doldu.
+    rateLimitExceededErrorHowCanFix: Nasıl düzeltilir?
+    rateLimitExceededErrorFix: Bir saat sonra sınır kendiliğinden yenilenir. İsterseniz kişisel GitHub erişim anahtarınızı ekleyerek saatte 5.000 istek hakkı alabilirsiniz.
+    rateLimitExceededGeneratePAT: Erişim anahtarı nasıl oluşturulur?
+    rateLimitExceededHasSet: Bir erişim anahtarı eklediniz.
+    rateLimitExceededRemoveToken: Anahtarı kaldır
+    rateLimitExceededGitHubPAT: GitHub erişim anahtarı
+    rateLimitExceededCopyPastePAT: Anahtarı yapıştırın
+    rateLimitExceededSaveToken: Kaydet
+    errorTitle: Bir hata oluştu
+    errorIntro: Güncel durum bilgisi alınamadı.
+    errorText: Birkaç dakika sonra yeniden deneyin.
+    errorHome: Ana sayfaya dön
+    pastScheduledMaintenance: Geçmiş planlı bakımlar
+    scheduledMaintenance: Planlı bakım
+    scheduledMaintenanceSummaryStarted: $DATE tarihinde başladı, $DURATION dakika
+    scheduledMaintenanceSummaryStarts: $DATE tarihinde başlayacak, $DURATION dakika
+    startedAt: Başlangıç
+    startsAt: Başlayacak
+    duration: Süre
+    durationMin: $DURATION dakika
+    incidentCompleted: Tamamlandı
+    incidentScheduled: Planlandı
+    duration24H: 24 sa
+    duration7D: 7 gün
+    duration30D: 30 gün
+    duration1Y: 1 yıl
+    durationAll: tümü
+    locale: tr-TR
