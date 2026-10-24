@@ -5,19 +5,23 @@ repo: status
 
 sites:
   - name: Haber sitesi
+    slug: haber-sitesi
     url: https://n52tv.com/
     expectedStatusCodes:
       - 200
   - name: Yönetim paneli
+    slug: yonetim-paneli
     url: https://panel.n52tv.com/
     expectedStatusCodes:
       - 200
   - name: Sunucu ve veritabanı
+    slug: sunucu-ve-veritabani
     # Hazır olma denetimi: API'nin veritabanına ulaştığını da doğrular.
     url: https://panel.n52tv.com/api/ready
     expectedStatusCodes:
       - 200
   - name: Okur API'si
+    slug: okur-api
     url: https://n52tv.com/api/public/v1/site
     expectedStatusCodes:
       - 200
