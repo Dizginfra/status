@@ -1,0 +1,36 @@
+# Denetim zinciri: GitHub zamanlayıcısı sık işleri saatlerce geciktirebiliyor. Bu iş akışı
+# denetimi (Uptime CI) başlatır, beş dakika bekler ve kendini yeniden başlatır. Dispatch ile
+# başlatılan çalışmalar iş akışının kendi token'ıyla tetiklenebilir; herkese açık depoda dakika
+# ücretsizdir. Zincir bir yerde koparsa yarım saatlik zamanlama onu yeniden başlatır; aynı anda
+# yalnızca bir zincir çalışır (concurrency).
+name: Denetim zinciri
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+concurrency:
+  group: denetim-zinciri
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  halka:
+    name: Denetle ve sıradakini başlat
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Denetimi başlat
+        run: gh workflow run uptime.yml -R "$GITHUB_REPOSITORY" --ref master
+
+      - name: Beş dakika bekle
+        run: sleep 290
+
+      - name: Sıradaki halkayı başlat
+        run: gh workflow run zincir.yml -R "$GITHUB_REPOSITORY" --ref master

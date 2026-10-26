@@ -2,7 +2,7 @@
 
 N52 TV hizmetlerinin anlık durumu: **https://status.n52tv.com**
 
-- Denetimler GitHub Actions'ta 5 dakikada bir çalışır ([Upptime](https://upptime.js.org)).
+- Denetimler GitHub Actions'ta 5 dakikada bir çalışır ([Upptime](https://upptime.js.org)). GitHub zamanlayıcısı sık işleri geciktirebildiği için `zincir.yml` denetimi her beş dakikada kendisi yeniden başlatır.
 - Sayfa GitHub Pages'te yayımlanır, yani N52 TV sunucusundan bağımsızdır; sunucu çökse de açık kalır.
 - Denetlenen adresler ve sayfanın metinleri `.upptimerc.yml` dosyasındadır.
 
