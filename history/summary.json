@@ -22,18 +22,20 @@
     "url": "https://panel.n52tv.com/",
     "icon": "https://icons.duckduckgo.com/ip3/panel.n52tv.com.ico",
     "slug": "yonetim-paneli",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 544,
-    "timeDay": 512,
-    "timeWeek": 544,
-    "timeMonth": 544,
-    "timeYear": 544,
-    "dailyMinutesDown": {}
+    "time": 6875,
+    "timeDay": 25853,
+    "timeWeek": 6875,
+    "timeMonth": 6875,
+    "timeYear": 6875,
+    "dailyMinutesDown": {
+      "2026-10-29": 0
+    }
   },
   {
     "name": "Sunucu ve veritabanı",
